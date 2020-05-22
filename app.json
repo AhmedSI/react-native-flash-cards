@@ -1,9 +1,9 @@
 {
-  "name": "fitnessReactNative",
-  "displayName": "fitnessReactNative",
+  "name": "flash-cardsReactNative",
+  "displayName": "flash-cardsReactNative",
   "expo": {
-    "name": "fitnessReactNative",
-    "slug": "fitnessReactNative",
+    "name": "flash-cardsReactNative",
+    "slug": "flash-cardsReactNative",
     "version": "1.0.0",
     "platforms": [
       "ios",

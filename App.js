@@ -1,36 +1,38 @@
-import * as React from 'react';
-import { Platform, StyleSheet, Text, View } from 'react-native';
+import * as React from 'react'
+import {Provider} from 'react-redux'
+import {createStore} from 'redux'
+import { createStackNavigator } from '@react-navigation/stack'
+import { NavigationContainer } from '@react-navigation/native'
+import {decks} from './reducers'
+import ConnectedHome from './components'
+import ConnectedAddDeck from './components/AddDeck'
+import ConnetedDeck from './components/Deck'
+import ConnectedAddQuestion from './components/addQuestion'
+import ConnectedQuiz from './components/Quiz'
+import ConnectedScore from './components/Score'
 
-const instructions = Platform.select({
-  ios: `Press Cmd+R to reload,\nCmd+D or shake for dev menu`,
-  android: `Double tap R on your keyboard to reload,\nShake or press menu button for dev menu`,
-});
+const Stack = createStackNavigator();
 
-export default function App() {
+function MyStack() {
+  
   return (
-    <View style={styles.container}>
-      <Text style={styles.welcome}>Welcome to React Native!</Text>
-      <Text style={styles.instructions}>To get started, edit App.js</Text>
-      <Text style={styles.instructions}>{instructions}</Text>
-    </View>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={ConnectedHome} />
+        <Stack.Screen name="Add Deck" component={ConnectedAddDeck} />
+  <Stack.Screen name="Deck" component={ConnetedDeck}/>
+        <Stack.Screen name="Add Question" component={ConnectedAddQuestion} />
+        <Stack.Screen name="Quiz" component={ConnectedQuiz} />
+        <Stack.Screen name="Score" component={ConnectedScore}/>
+      </Stack.Navigator>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+export default function App() {
+  return (
+    <Provider store={createStore(decks)}>
+      <NavigationContainer>
+        <MyStack />
+      </NavigationContainer>
+    </Provider>
+  );
+}
